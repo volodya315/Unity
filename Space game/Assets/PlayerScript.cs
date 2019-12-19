@@ -5,9 +5,14 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     private Rigidbody ship;
-    [SerializeField] float speed;
-    [SerializeField] float tilt;
-    [SerializeField] float xMin, xMax, zMin, zMax;
+    [SerializeField] float speed; //скорость движения корабля
+    [SerializeField] float tilt; //наклон корабля при поворотах
+    [SerializeField] float xMin, xMax, zMin, zMax; //координаты, ограничивающие движение по сцене
+    [SerializeField] GameObject Gun1;
+    [SerializeField] GameObject Gun2;
+    [SerializeField] GameObject LazerShot;
+    [SerializeField] float ShotDelay; //задержка между выстрелами
+    private float NextShot; //время следующего выстрела
 
     void Start()
     {
@@ -17,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        ShootGuns();
     }
 
     void MovePlayer()
@@ -36,5 +42,23 @@ public class PlayerScript : MonoBehaviour
         var zPosition = Mathf.Clamp(ship.position.z, zMin, zMax);
 
         ship.position = new Vector3(xPosition,5,zPosition);
+    }
+
+    void ShootGuns()
+    {
+        //задаем стрельбу по нажатию кнопки
+        if (Input.GetButton("Fire1") && Time.time > NextShot)
+        {
+            InitShots();
+            NextShot = Time.time + ShotDelay;
+        }
+
+    }
+
+    void InitShots()
+    {
+        //Создаем выстрел лазером из пушек 1 и 2 с нулевым поворотом
+        Instantiate(LazerShot, Gun1.transform.position, Quaternion.identity);
+        Instantiate(LazerShot, Gun2.transform.position, Quaternion.identity);
     }
 }

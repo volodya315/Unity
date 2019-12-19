@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AsteroidScript.cs" />
     <Compile Include="Assets\ExplosionEffects\WarFX\Scripts\CFX_AutoDestructShuriken.cs" />
     <Compile Include="Assets\ExplosionEffects\WarFX\Scripts\CFX_LightIntensityFade.cs" />
     <Compile Include="Assets\ExplosionEffects\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
