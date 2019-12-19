@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class AsteroidScript : MonoBehaviour
         Rigidbody asteroid = GetComponent<Rigidbody>();
         asteroid.angularVelocity = Random.insideUnitSphere * rotationSpeed; //задаем вращение стероиду
 
-        asteroid.velocity = Vector3.back * Random.Range(minSpeed, maxSpeed);
+        asteroid.velocity = Vector3.back * Random.Range(minSpeed, maxSpeed); //задаем направление в сторону игрока и рандомную скорость движения
 
     }
 
